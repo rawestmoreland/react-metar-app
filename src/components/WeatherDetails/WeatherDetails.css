@@ -1,0 +1,46 @@
+.weather-details-wrapper {
+    width: 60%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider {
+    height: 20px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.metar-card-wrapper {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.loading-wrapper {
+    height: 85%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.metar-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.metar-row p {
+    margin: 0 5px;
+}

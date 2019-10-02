@@ -1,0 +1,121 @@
+.weather-card-wrapper {
+    width: 59%;
+    margin: 0 0 20px 0;
+    padding: 0 0.5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+.loading-wrapper {
+    min-height: 80vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.0;
+}
+
+.load-spinner {
+    color: rgb(61, 47, 73);
+}
+
+.weather-card {
+    width: 100%;
+    padding: 0 0 5px 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(170, 170, 170);
+    cursor: pointer;
+}
+
+/* The last row doesn't have a border on the bottom */
+.weather-card-last {
+    border-bottom: none;
+}
+
+.weather-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+p {
+    margin: 0;
+}
+
+.airport-code, .airport-name {
+    margin: 5px;
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+}
+
+.visibility {
+    font-size: 10px;
+    margin: 10px 0 0 5px;
+    color: rgb(68, 68, 68);
+}
+
+.sky-condition {
+    font-size: 10px;
+    margin: 0 5px;
+    color: rgb(68, 68, 68);
+}
+
+.weather-row-right {
+    display: flex;
+    justify-content: center;
+}
+
+.wind-speed-direction {
+    margin: 0 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(68, 68, 68)
+}
+
+.temp {
+    font-weight: bold;
+    color: rgb(68, 68, 68);
+}
+
+.dewpoint, .barometer {
+    font-size: 10px;
+    color: rgb(68, 68, 68);
+}
+
+.flight-rules, .taf-available {
+    width: 35px;
+    height: 17px;
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0 5px;
+}
+
+.flight-rules-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flight-rules-vfr {
+    background-color: green;
+}
+
+.flight-rules-ifr {
+    background-color: red;
+}
+
+.flight-rules-mvfr {
+    background-color: blue;
+}
+
+.flight-rules-lifr {
+    background-color: purple;
+}

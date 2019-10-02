@@ -1,0 +1,65 @@
+.station-card-wrapper {
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+.station-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.local-timestamp {
+    margin: 5px;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(110, 110, 110);
+}
+
+.utc-timestamp {
+    margin: 0 5px;
+    font-size: 13px;
+    color: rgb(110, 110, 110);
+}
+
+.city-state {
+    margin: 0 5px;
+    font-size: 13px;
+    color: rgb(110, 110, 110);
+}
+
+.sunrise-sunset {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    margin: 0 5px;
+    color: rgb(60, 60, 60);
+}
+
+.sunrise-sunset div {
+    padding-right: 5px;
+}
+
+.rotated-arrow-up {
+    transform: rotate(45deg);
+}
+
+.rotated-arrow-down {
+    transform: rotate(135deg);
+}
+
+.sunrise-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sunrise-logo {
+    height: 1.5vmin;
+}
