@@ -1,46 +1,154 @@
 .weather-details-wrapper {
-    width: 60%;
-    margin-bottom: 20px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 60%;
+  margin-bottom: 20px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .divider {
-    height: 20px;
-    width: 100%;
-    background-color: transparent;
+  height: 20px;
+  width: 100%;
+  background-color: transparent;
 }
 
 .metar-card-wrapper {
-    width: 100%;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
+  width: 100%;
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: whitesmoke;
 }
 
 .loading-wrapper {
-    height: 85%;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
+  height: 85%;
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: whitesmoke;
 }
 
 .metar-row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.metar-row .icao {
+  font-weight: bold;
+  color: #505050;
+}
+
+.metar-row .metar {
+  color: blue;
+  font-weight: bold;
 }
 
 .metar-row p {
-    margin: 0 5px;
+  margin: 0 5px;
 }
+
+.metar-row .text-and-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.metar-row .text-and-time .metar-time {
+  font-size: 13px;
+}
+
+.title-col p {
+  color: #505050;
+}
+
+.weather-data {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+.weather-data p {
+  margin: 0 5px;
+}
+
+.weather-data-wrapper {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.title-col {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+.data-col {
+  grid-column: 2/-1;
+  padding: 0 5px;
+}
+
+.taf-card-wrapper {
+  background-color: lightgrey;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.forecast-wrapper {
+  width: 100%;
+}
+
+.forecast-wrapper .forecast-title {
+  color: #ce7d19;
+  font-weight: bold;
+  padding: 10px 5px;
+}
+
+.forecast-wrapper .forecast-data p {
+  padding: 0 10px;
+}
+/*# sourceMappingURL=WeatherDetails.css.map */

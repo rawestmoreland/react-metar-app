@@ -15,11 +15,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.0;
+    opacity: 0;
 }
 
 .load-spinner {
     color: rgb(61, 47, 73);
+    position: relative;
+    top: 40vh;
 }
 
 .weather-card {
