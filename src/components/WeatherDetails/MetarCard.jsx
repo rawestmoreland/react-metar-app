@@ -26,7 +26,7 @@ class MetarCard extends Component {
                     <div className="metar-row">
                         <div className="text-and-time">
                             <p className="metar">METAR</p>
-                            <p className="metar-time">{`${obs.getMonth() + 1}/${obs.getDate()}/${obs.getFullYear()}, ${obs.getHours()}:${obs.getMinutes()}Z`}</p>
+                            <p className="metar-time">{`${obs.getMonth() + 1}/${obs.getDate()}/${obs.getFullYear()}, ${obs.getHours() > 12 ? obs.getHours() - 12 : obs.getHours()}:${(obs.getMinutes() < 10 ? "0" : "") + obs.getMinutes()} ${obs.getHours() < 12 ? "AM" : "PM"} LT`}</p>
                         </div>
                         <p className="icao">{data.icao}</p>
                     </div>

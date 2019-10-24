@@ -80,7 +80,7 @@ function WeatherCard() {
 
     setInterval(() => {
       setIsLoading(false)
-    }, 3000)
+    }, 2000)
   }
 
   const items =
@@ -117,7 +117,7 @@ function WeatherCard() {
                   }`}
                 </p>
                 <p className='visibility'>
-                  {`${metarData[key].visibility !== undefined ? metarData[key].visibility.miles : null} miles`}
+                  {`${metarData[key].visibility !== undefined ? metarData[key].visibility.miles + " miles" : ""}`}
                 </p>
                 {metarData[key].clouds.map((item, index) => (
                   <p key={index + 1} className='sky-condition'>{`${item.code} ${
@@ -128,9 +128,9 @@ function WeatherCard() {
               <div>
                 <div className='weather-row-right'>
                   <div className='temp-dewpoint'>
-                    <p className='temp'>{`${metarData[key].temperature.celsius}ºC`}</p>
-                    <p className='dewpoint'>{`${metarData[key].dewpoint.celsius}ºC ${metarData[key].humidity.percent}%`}</p>
-                    <p className='barometer'>{`${metarData[key].barometer.hg} inHg`}</p>
+                    <p className='temp'>{`${metarData[key].temperature !== undefined ? metarData[key].temperature.celsius + "ºC" : ""}`}</p>
+                    <p className='dewpoint'>{`${metarData[key].dewpoint !== undefined ? metarData[key].dewpoint.celsius + "ºC" : ""} ${metarData[key].humidity !== undefined ? metarData[key].humidity.percent + "%" : ""}`}</p>
+                    <p className='barometer'>{`${metarData[key].barometer !== undefined ? metarData[key].barometer.hg + " inHg" : ""}`}</p>
                   </div>
                   <div
                     className={`flight-rules ${

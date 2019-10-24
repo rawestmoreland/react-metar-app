@@ -86,11 +86,15 @@ class TafCard extends Component {
                     } LT (${from.getDate()}.):`}
                   </p>
                   <div className='forecast-data'>
-                    <p>{`${i.wind.degrees} at ${i.wind.speed_kts} knots`}</p>
-                    {i.wind.gust_kts !== undefined ? (
-                      <p>{`Gusting ${i.wind.gust_kts} knots`}</p>
+                    {i.wind !== undefined ? (
+                      <p>{`${i.wind.degrees} at ${i.wind.speed_kts} knots`}</p>
                     ) : null}
-                    <p>{`${i.visibility.miles} miles`}</p>
+                    {i.wind !== undefined ? (
+                      i.wind.gust_kts !== undefined ? (
+                        <p>{`Gusting ${i.wind.gust_kts} knots`}</p>
+                      ) : null
+                    ) : null}
+                    {i.visibility !== undefined ? <p>{`${i.visibility.miles} miles`}</p> : null}
                     {i.conditions !== undefined
                       ? i.conditions.map((i, index) => {
                           return <p key={index}>{`${i.text}`}</p>

@@ -1,17 +1,29 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import './Form.css'
 
 const Form = (props) => {
 
+    const history = useHistory()
+
+    const [searchData, setSearchData] = useState("");
+
     const handleSubmit = (e) => {
-        e.preventDefault();
+        history.push(`/${searchData}`)
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setSearchData(e.target.value)
     }
 
     return (
         <div className="form-wrapper">
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="KIAH, KLAX, KORD"></input>
-                <button type="submit">go</button>
+                <input onChange={handleChange} type="text" placeholder="KIAH, KLAX, KORD" value={searchData}></input>
+                <button className="search-button" onClick={handleSubmit}>
+                    go
+                </button>
             </form>
         </div>
 
