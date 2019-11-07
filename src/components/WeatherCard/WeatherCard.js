@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import './WeatherCard.css'
 import testData from './testData.json'
 
-function WeatherCard() {
-  // localStorage.clear()
+class WeatherCard extends Component {
+  // const [metarData, setMetarData] = useState([])
+  // const [isLoading, setIsLoading] = useState(true)
 
-  const [metarData, setMetarData] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  state = {
+    metarData: [],
+    isLoading: true
+  }
 
-  let cachedData
-  let cachedTime
-
-  // Some static data saved externally
-  let devData = testData
-
-  // API key stored in env file
-  const api_key = process.env.REACT_APP_API_KEY
-
-  let now = new Date().getTime()
-
-  // const api_key = 'fde2a3adbcfa5fe325d5fb52ee'
-
-  useEffect(() => {
+  componentDidMount() {
+    // localStorage.clear()
+    let cachedData
+    let cachedTime
+    let now = new Date().getTime()
     if (localStorage.getItem('metarData')) {
       console.log('Data found locally. Checking the timestamp...')
       cachedData = localStorage.getItem('metarData')
@@ -40,157 +35,226 @@ function WeatherCard() {
     if (cachedData) {
       console.log('Using cached data')
       let jsonData = JSON.parse(cachedData)
-      setMetarData(jsonData.data)
+      this.setState({
+        metarData: jsonData.data
+      })
       setInterval(() => {
-        setIsLoading(false)
+        this.setState({
+          isLoading: false
+        })
       }, 2000)
     } else {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
-          fetchLocal(position.coords.latitude, position.coords.longitude)
+          this.fetchLocal(position.coords.latitude, position.coords.longitude)
         })
       } else {
         console.log('ERROR. No location found')
       }
     }
-  }, []) // Empty array keeps the useEffect from looping
+  }
 
-  const fetchLocal = async (lat, long) => {
+  // let cachedData
+  // let cachedTime
+
+  // Some static data saved externally
+  // let devData = testData
+
+  // let now = new Date().getTime()
+
+  // useEffect(() => {
+  //   if (localStorage.getItem('metarData')) {
+  //     console.log('Data found locally. Checking the timestamp...')
+  //     cachedData = localStorage.getItem('metarData')
+  //     cachedTime = localStorage.getItem('cachedTime')
+  //   } else {
+  //     console.log('no local metar data found')
+  //   }
+
+  //   // If time since last cache is more than 15 minutes, clear the cachedData variable
+  //   if (cachedData && now - cachedTime > 900000) {
+  //     console.log('15 minutes has elapsed. Fetching new data from the API')
+  //     cachedData = null
+  //   }
+
+  //   if (cachedData) {
+  //     console.log('Using cached data')
+  //     let jsonData = JSON.parse(cachedData)
+  //     setMetarData(jsonData.data)
+  //     setInterval(() => {
+  //       setIsLoading(false)
+  //     }, 2000)
+  //   } else {
+  //     if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(position => {
+  //         fetchLocal(position.coords.latitude, position.coords.longitude)
+  //       })
+  //     } else {
+  //       console.log('ERROR. No location found')
+  //     }
+  //   }
+  // }, []) // Empty array keeps the useEffect from looping
+
+  fetchLocal = async (lat, long) => {
+    // API key stored in env file
+    const api_key = process.env.REACT_APP_API_KEY
+    const config = {
+      headers: { 'X-API-Key': api_key }
+    }
+    const url = `https://api.checkwx.com/metar/lat/${lat}/lon/${long}/radius/50/decoded`
     console.log('Fetching API data....')
 
-    const data = await fetch(
-      `https://api.checkwx.com/metar/lat/${lat}/lon/${long}/radius/50/decoded`,
-      { headers: { 'X-API-Key': api_key } }
-    )
+    // Fetch the data from the API
+    const data = await axios.get(url, config)
 
-    const jsonData = await data.json()
+    const jsonData = data.data
 
-    console.log(jsonData.data)
+    console.log(data.data)
 
-    cachedTime = new Date().getTime()
+    // Get the current time
+    const cachedTime = new Date().getTime()
 
-    // Save the json to local storage for late
+    // Save the json to local storage for later
     localStorage.setItem('metarData', JSON.stringify(jsonData))
     // Time stamp the local storage save
     localStorage.setItem('cachedTime', cachedTime)
 
-    setMetarData(jsonData.data)
+    // Put the data in the metar state
+    this.setState({
+      metarData: jsonData.data
+    })
 
+    // Update the loading state to stop the spinner
     setInterval(() => {
-      setIsLoading(false)
+      this.setState({
+        isLoading: false
+      })
     }, 2000)
   }
 
-  const items =
-    metarData != null ? (
-      Object.keys(metarData).map(key => (
-        <div
-          key={key}
-          className={`weather-card ${
-            key === metarData.length - 1 ? 'weather-card-last' : ''
-          }`}
-        >
-          <Link to={metarData[key].icao}>
-            <div className='weather-row'>
-              <p className='airport-name'>{metarData[key].station.name}</p>
-              <p className='airport-code'>{metarData[key].icao}</p>
-            </div>
-            <div className='weather-row'>
-              <div className='weather-row-left'>
-                <p className='wind-speed-direction'>
-                  {`${
-                    metarData[key].wind !== undefined
-                      ? metarData[key].wind.degrees + 'º'
-                      : 'calm'
-                  } ${
-                    metarData[key].wind !== undefined
-                      ? metarData[key].wind.speed_kts + 'kts'
-                      : ''
-                  } ${
-                    metarData[key].wind === undefined
-                      ? ''
-                      : metarData[key].wind.gust_kts === undefined
-                      ? ''
-                      : metarData[key].wind.gust_kts
-                  }`}
+  render() {
+    let items =
+      this.state.metarData != null ? (
+        Object.keys(this.state.metarData).map(key => (
+          <div
+            key={key}
+            className={`weather-card ${
+              key === this.state.metarData.length - 1 ? 'weather-card-last' : ''
+            }`}
+          >
+            <Link to={this.state.metarData[key].icao}>
+              <div className='weather-row'>
+                <p className='airport-name'>
+                  {this.state.metarData[key].station.name}
                 </p>
-                <p className='visibility'>
-                  {`${
-                    metarData[key].visibility !== undefined
-                      ? metarData[key].visibility.miles + ' miles'
-                      : ''
-                  }`}
-                </p>
-                {metarData[key].clouds.map((item, index) => (
-                  <p key={index + 1} className='sky-condition'>{`${item.code} ${
-                    item.base_feet_agl ? item.base_feet_agl : ''
-                  }`}</p>
-                ))}
+                <p className='airport-code'>{this.state.metarData[key].icao}</p>
               </div>
-              <div>
-                <div className='weather-row-right'>
-                  <div className='temp-dewpoint'>
-                    <p className='temp'>{`${
-                      metarData[key].temperature !== undefined
-                        ? metarData[key].temperature.celsius + 'ºC'
-                        : ''
-                    }`}</p>
-                    <p className='dewpoint'>{`${
-                      metarData[key].dewpoint !== undefined
-                        ? metarData[key].dewpoint.celsius + 'ºC'
+              <div className='weather-row'>
+                <div className='weather-row-left'>
+                  <p className='wind-speed-direction'>
+                    {`${
+                      this.state.metarData[key].wind !== undefined
+                        ? this.state.metarData[key].wind.degrees + 'º'
+                        : 'calm'
+                    } ${
+                      this.state.metarData[key].wind !== undefined
+                        ? this.state.metarData[key].wind.speed_kts + 'kts'
                         : ''
                     } ${
-                      metarData[key].humidity !== undefined
-                        ? metarData[key].humidity.percent + '%'
-                        : ''
-                    }`}</p>
-                    <p className='barometer'>{`${
-                      metarData[key].barometer !== undefined
-                        ? metarData[key].barometer.hg + ' inHg'
-                        : ''
-                    }`}</p>
-                  </div>
-                  <div
-                    className={`flight-rules ${
-                      metarData[key].flight_category === 'VFR'
-                        ? 'flight-rules-vfr'
-                        : metarData[key].flight_category === 'IFR'
-                        ? 'flight-rules-ifr'
-                        : metarData[key].flight_category === 'MVFR'
-                        ? 'flight-rules-mvfr'
-                        : metarData[key].flight_category === 'LIFR'
-                        ? 'flight-rules-lifr'
+                      this.state.metarData[key].wind === undefined
+                        ? ''
+                        : this.state.metarData[key].wind.gust_kts === undefined
+                        ? ''
+                        : this.state.metarData[key].wind.gust_kts
+                    }`}
+                  </p>
+                  <p className='visibility'>
+                    {`${
+                      this.state.metarData[key].visibility !== undefined
+                        ? this.state.metarData[key].visibility.miles + ' miles'
                         : ''
                     }`}
-                  >
-                    <div className='flight-rules-text'>
-                      {metarData[key].flight_category}
+                  </p>
+                  {this.state.metarData[key].clouds.map((item, index) => (
+                    <p key={index + 1} className='sky-condition'>{`${
+                      item.code
+                    } ${item.base_feet_agl ? item.base_feet_agl : ''}`}</p>
+                  ))}
+                </div>
+                <div>
+                  <div className='weather-row-right'>
+                    <div className='temp-dewpoint'>
+                      <p className='temp'>{`${
+                        this.state.metarData[key].temperature !== undefined
+                          ? this.state.metarData[key].temperature.celsius + 'ºC'
+                          : ''
+                      }`}</p>
+                      <p className='dewpoint'>{`${
+                        this.state.metarData[key].dewpoint !== undefined
+                          ? this.state.metarData[key].dewpoint.celsius + 'ºC'
+                          : ''
+                      } ${
+                        this.state.metarData[key].humidity !== undefined
+                          ? this.state.metarData[key].humidity.percent + '%'
+                          : ''
+                      }`}</p>
+                      <p className='barometer'>{`${
+                        this.state.metarData[key].barometer !== undefined
+                          ? this.state.metarData[key].barometer.hg + ' inHg'
+                          : ''
+                      }`}</p>
+                    </div>
+                    <div
+                      className={`flight-rules ${
+                        this.state.metarData[key].flight_category === 'VFR'
+                          ? 'flight-rules-vfr'
+                          : this.state.metarData[key].flight_category === 'IFR'
+                          ? 'flight-rules-ifr'
+                          : this.state.metarData[key].flight_category === 'MVFR'
+                          ? 'flight-rules-mvfr'
+                          : this.state.metarData[key].flight_category === 'LIFR'
+                          ? 'flight-rules-lifr'
+                          : ''
+                      }`}
+                    >
+                      <div className='flight-rules-text'>
+                        {this.state.metarData[key].flight_category}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        </div>
-      ))
-    ) : (
-      <div>Something happened</div>
-    )
-
-  return (
-    <>
-      {isLoading ? (
-        <i className='load-spinner fas fa-asterisk fa-spin fa-4x'></i>
+            </Link>
+          </div>
+        ))
       ) : (
-        <div></div>
-      )}
-      <div
-        className={`${!isLoading ? 'weather-card-wrapper' : 'loading-wrapper'}`}
-      >
-        {!isLoading ? items === undefined ? <div></div> : items : <div></div>}
-      </div>
-    </>
-  )
+        <div>Something happened</div>
+      )
+    return (
+      <>
+        {this.state.isLoading ? (
+          <i className='load-spinner fas fa-asterisk fa-spin fa-4x'></i>
+        ) : (
+          <div></div>
+        )}
+        <div
+          className={`${
+            !this.state.isLoading ? 'weather-card-wrapper' : 'loading-wrapper'
+          }`}
+        >
+          {!this.state.isLoading ? (
+            items === undefined ? (
+              <div></div>
+            ) : (
+              items
+            )
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </>
+    )
+  }
 }
 
 export default WeatherCard
