@@ -1,0 +1,167 @@
+.weather-card-wrapper {
+  width: 59%;
+  margin: 0 0 20px 0;
+  padding: 0 0.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 37.5em) {
+  .weather-card-wrapper {
+    width: 95%;
+  }
+}
+
+.loading-wrapper {
+  min-height: 80vh;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.load-spinner {
+  color: #3d2f49;
+  position: relative;
+  top: 40vh;
+}
+
+.weather-card {
+  width: 100%;
+  padding: 0 0 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid #aaaaaa;
+  cursor: pointer;
+}
+
+/* The last row doesn't have a border on the bottom */
+.weather-card-last {
+  border-bottom: none;
+}
+
+.weather-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+p {
+  margin: 0;
+}
+
+.airport-code, .airport-name {
+  margin: 5px;
+  font-weight: bold;
+  color: #505050;
+}
+
+.visibility {
+  font-size: 10px;
+  margin: 10px 0 0 5px;
+  color: #444444;
+}
+
+.sky-condition {
+  font-size: 10px;
+  margin: 0 5px;
+  color: #444444;
+}
+
+.weather-row-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wind-speed-direction {
+  margin: 0 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #444444;
+}
+
+.temp {
+  font-weight: bold;
+  color: #444444;
+}
+
+.dewpoint, .barometer {
+  font-size: 10px;
+  color: #444444;
+}
+
+.flight-rules, .taf-available {
+  width: 35px;
+  height: 17px;
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: 0 5px;
+}
+
+.flight-rules-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flight-rules-vfr {
+  background-color: green;
+}
+
+.flight-rules-ifr {
+  background-color: red;
+}
+
+.flight-rules-mvfr {
+  background-color: blue;
+}
+
+.flight-rules-lifr {
+  background-color: purple;
+}
+/*# sourceMappingURL=WeatherCard.css.map */

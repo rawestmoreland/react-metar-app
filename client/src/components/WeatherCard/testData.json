@@ -1,0 +1,119 @@
+{
+    "results": 2,
+    "data": [
+      {
+        "temperature": {
+          "celsius": 11,
+          "fahrenheit": 52
+        },
+        "dewpoint": {
+          "celsius": 11,
+          "fahrenheit": 52
+        },
+        "humidity": {
+          "percent": 100
+        },
+        "barometer": {
+          "hg": 30.28,
+          "hpa": 1025,
+          "kpa": 102.54,
+          "mb": 1025.42
+        },
+        "visibility": {
+          "miles": "10",
+          "miles_float": 10,
+          "meters": "16,100",
+          "meters_float": 16100
+        },
+        "elevation": {
+          "feet": 246.06,
+          "meters": 75
+        },
+        "location": {
+          "coordinates": [
+            -79.101333,
+            35.582444
+          ],
+          "type": "Point"
+        },
+        "radius": {
+          "from": "KRDU",
+          "miles": 26.94,
+          "meters": 43348,
+          "bearing": 221,
+          "direction": "SW"
+        },
+        "icao": "KTTA",
+        "observed": "2019-09-21T07:15:00.000Z",
+        "raw_text": "KTTA 210715Z AUTO 00000KT 10SM CLR 11/11 A3028 RMK AO2 T01100110",
+        "station": {
+          "name": "Raleigh Exec Jetport at Sanford-Lee County"
+        },
+        "clouds": [
+          {
+            "code": "CLR",
+            "text": "Clear skies"
+          }
+        ],
+        "flight_category": "VFR",
+        "conditions": []
+      },
+      {
+        "temperature": {
+          "celsius": 11,
+          "fahrenheit": 52
+        },
+        "dewpoint": {
+          "celsius": 10,
+          "fahrenheit": 50
+        },
+        "humidity": {
+          "percent": 94
+        },
+        "barometer": {
+          "hg": 30.3,
+          "hpa": 1026,
+          "kpa": 102.61,
+          "mb": 1026.12
+        },
+        "visibility": {
+          "miles": "10",
+          "miles_float": 10,
+          "meters": "16,100",
+          "meters_float": 16100
+        },
+        "elevation": {
+          "feet": 370.73,
+          "meters": 113
+        },
+        "location": {
+          "coordinates": [
+            -78.33025,
+            36.023361
+          ],
+          "type": "Point"
+        },
+        "radius": {
+          "from": "KRDU",
+          "miles": 27.53,
+          "meters": 44306,
+          "bearing": 68,
+          "direction": "ENE"
+        },
+        "icao": "KLHZ",
+        "observed": "2019-09-21T07:20:00.000Z",
+        "raw_text": "KLHZ 210720Z AUTO 00000KT 10SM CLR 11/10 A3030 RMK AO2",
+        "station": {
+          "name": "Triangle North Executive"
+        },
+        "clouds": [
+          {
+            "code": "CLR",
+            "text": "Clear skies"
+          }
+        ],
+        "flight_category": "VFR",
+        "conditions": []
+      }
+    ]
+  }

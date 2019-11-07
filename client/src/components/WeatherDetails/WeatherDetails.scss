@@ -1,0 +1,111 @@
+.weather-details-wrapper {
+    width: 60%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media only screen and (max-width: 37.5em) {
+        width: 95%;
+    }
+}
+
+.divider {
+    height: 20px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.metar-card-wrapper {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.loading-wrapper {
+    height: 85%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.metar-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .icao {
+        font-weight: bold;
+        color: #505050;
+    }
+    .metar {
+        color: blue;
+        font-weight: bold;
+    }
+    p {
+        margin: 0 5px;
+    }
+    .text-and-time {
+        display: flex;
+        width: 50%;
+        flex-direction: row;
+        .metar-time {
+            font-size: 13px;
+        }
+    }
+}
+
+.title-col {
+    p {
+        color: #505050;
+    }
+}
+
+.weather-data {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    p {
+        margin: 0 5px;
+    }
+}
+
+.weather-data-wrapper {
+    width: 100%;
+    padding: 0 10px;
+}
+
+.title-col {
+    grid-column: 1/2;
+}
+.data-col {
+    grid-column: 2/-1;
+    padding: 0 5px;
+}
+
+.taf-card-wrapper {
+    background-color: lightgrey;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.forecast-wrapper {
+    width: 100%;
+    .forecast-title {
+        color: rgb(206, 125, 25);
+        font-weight: bold;
+        padding: 10px 5px;
+    }
+    .forecast-data {
+        p {
+            padding: 0 10px;
+        }
+    }
+}
