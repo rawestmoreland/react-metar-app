@@ -1,24 +1,16 @@
-import React, { useEffect, useState, Component } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 class TafCard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: null
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      data: this.props.data
-    })
+  static propTypes = {
+    data: PropTypes.object.isRequired
   }
 
   render() {
-    let data = this.state.data
+    let { data } = this.props
     if (data) {
       const obs = new Date(data.timestamp.issued)
-      console.log(data)
       const from = new Date(data.timestamp.from)
       const to = new Date(data.timestamp.to)
       return (
@@ -94,7 +86,9 @@ class TafCard extends Component {
                         <p>{`Gusting ${i.wind.gust_kts} knots`}</p>
                       ) : null
                     ) : null}
-                    {i.visibility !== undefined ? <p>{`${i.visibility.miles} miles`}</p> : null}
+                    {i.visibility !== undefined ? (
+                      <p>{`${i.visibility.miles} miles`}</p>
+                    ) : null}
                     {i.conditions !== undefined
                       ? i.conditions.map((i, index) => {
                           return <p key={index}>{`${i.text}`}</p>
@@ -126,4 +120,8 @@ class TafCard extends Component {
   }
 }
 
-export default TafCard
+const mapStateToProps = state => ({
+  data: state.icaoTaf.tafData
+})
+
+export default connect(mapStateToProps)(TafCard)
