@@ -22,9 +22,10 @@ class WeatherCard extends Component {
     const api_key = process.env.REACT_APP_API_KEY
     const config = {
       headers: { 'X-API-Key': api_key }
-    }
+	}
+	console.log(api_key);
     const url = `https://api.checkwx.com/metar/lat/${lat}/lon/${long}/radius/50/decoded`
-    console.log('Fetching API data....')
+    console.log('Fetching API data....');
 
     // Fetch the data from the API
     const data = await axios.get(url, config)
