@@ -14,7 +14,6 @@ class App extends React.Component {
       <Provider store={store}>
         <Router basename='/avwx'>
           <div className='App'>
-            <Form />
             <Switch basename='/avwx'>
               <Route path={`/`} exact component={WeatherCard} />
               <Route path={`/:icao`} component={WeatherDetails} />

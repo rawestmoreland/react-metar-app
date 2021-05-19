@@ -22,9 +22,10 @@ class WeatherCard extends Component {
     const api_key = process.env.REACT_APP_API_KEY
     const config = {
       headers: { 'X-API-Key': api_key }
-    }
+	}
+	console.log(api_key);
     const url = `https://api.checkwx.com/metar/lat/${lat}/lon/${long}/radius/50/decoded`
-    console.log('Fetching API data....')
+    console.log('Fetching API data....');
 
     // Fetch the data from the API
     const data = await axios.get(url, config)
@@ -65,7 +66,7 @@ class WeatherCard extends Component {
               key === metarData.length - 1 ? 'weather-card-last' : ''
             }`}
           >
-            <Link to={metarData[key].icao}>
+            {/* <Link to={metarData[key].icao}> */}
               <div className='weather-row'>
                 <p className='airport-name'>{metarData[key].station.name}</p>
                 <p className='airport-code'>{metarData[key].icao}</p>
@@ -145,7 +146,7 @@ class WeatherCard extends Component {
                   </div>
                 </div>
               </div>
-            </Link>
+            {/* </Link> */}
           </div>
         ))
       ) : (

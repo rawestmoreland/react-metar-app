@@ -9,7 +9,7 @@ export const getStationTimestamp = icao => dispatch => {
       'X-API-Key': api_key
     }
   }
-  const url = `https://api.checkwx.com/station/${icao}/timestamp`
+  const url = `https://api.checkwx.com/station/${icao}/suntimes`
   axios.get(url, config).then(res =>
     dispatch({
       type: GET_STATION_TIMESTAMP,
