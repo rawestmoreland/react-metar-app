@@ -66,7 +66,7 @@ class WeatherCard extends Component {
               key === metarData.length - 1 ? 'weather-card-last' : ''
             }`}
           >
-            <Link to={metarData[key].icao}>
+            {/* <Link to={metarData[key].icao}> */}
               <div className='weather-row'>
                 <p className='airport-name'>{metarData[key].station.name}</p>
                 <p className='airport-code'>{metarData[key].icao}</p>
@@ -146,7 +146,7 @@ class WeatherCard extends Component {
                   </div>
                 </div>
               </div>
-            </Link>
+            {/* </Link> */}
           </div>
         ))
       ) : (
